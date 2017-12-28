@@ -134,34 +134,6 @@ jp.Products = function() {
     }
 
     /**
-     * upload picture for an item in the products list
-     *
-     * @param {string} barcode
-    */
-    this.upload_pic = function (barcode) {
-        // Status bar : loading
-        jp.status.say('processing');
-
-        // Query
-        $.ajax({
-            url: "/api/products/" + barcode,
-            type: 'GET',
-            dataType: 'json',
-            success: function (response) {
-                // Refresh and display new list + display status
-                self.fetch_list(function () {
-                    self.show_list();
-                    jp.status.say('web_products_pic_upload');
-                });
-            },
-            error: function () {
-                jp.status.say('web_products_delete_error')
-            }
-
-        });
-    }
-
-    /**
      * Events binding
     */
     this.bind_events = function() {

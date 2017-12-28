@@ -125,12 +125,31 @@ class Config:
         user_password = hashlib.sha1(user_password).hexdigest()
         params.add_item('user_password', user_password)
 
+        
+        import random
+        random = random.SystemRandom()
+ 
+        def get_random_string(length=12,
+                              allowed_chars='abcdefghijklmnopqrstuvwxyz'
+                                            'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'):
+          
+            return ''.join(random.choice(allowed_chars) for i in range(length))
+ 
+        def get_secret_key():
+            """
+            Create a random secret key.
+ 
+            Taken from the Django project.
+            """
+            chars = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$^*(-_=+)'
+            return get_random_string(24, chars)
         # Ask for : api key
         params.delete_item('api_key')
         api_key = getpass.getpass(lang.config_api)
         if not api_key:
-            api_key = 'fa7369eb-e132-4356-bb3c-29d451310a0f'
+            api_key = (get_secret_key())
         params.add_item('api_key', api_key)
+        print('Api-Key:  ' + api_key)
 
         # Close connection to the database
         Database.off()
