@@ -24,7 +24,7 @@ chmod a+x uninstall.sh;
 #-----------------------------------------------------------------------------
 # Dystem dependencies
 #-----------------------------------------------------------------------------
-sudo apt-get install git python3-dev python3-pip python3-picamera virtualenv libzbar0 supervisor libjpeg8-dev build-essential;
+sudo apt-get install git python3-dev python3-pip python3-picamera virtualenv libzbar0 supervisor libjpeg8-dev build-essential python-pil python-imaging python-imaging-tk;
 
 #-----------------------------------------------------------------------------
 # Virtual env
